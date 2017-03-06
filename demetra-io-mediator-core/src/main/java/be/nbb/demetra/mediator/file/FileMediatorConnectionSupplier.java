@@ -19,8 +19,7 @@ package be.nbb.demetra.mediator.file;
 import be.nbb.demetra.mediator.MediatorConnection;
 import be.nbb.demetra.mediator.MediatorConnectionSupplier;
 import be.nbb.demetra.mediator.MediatorAlias;
-import com.google.common.collect.ArrayListMultimap;
-import com.google.common.collect.ListMultimap;
+import be.nbb.demetra.mediator.util.Mediators;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -39,7 +38,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  *
  * @author Philippe Charles
  */
-public final class FileMediatorConnectionSupplier extends MediatorConnectionSupplier {
+public final class FileMediatorConnectionSupplier implements MediatorConnectionSupplier {
 
     private final Path file;
 
@@ -55,33 +54,11 @@ public final class FileMediatorConnectionSupplier extends MediatorConnectionSupp
     @Override
     public MediatorConnection getConnection() throws IOException {
         try (InputStream stream = Files.newInputStream(file)) {
-            return fromXml(stream);
+            return Mediators.connectionOf(loadXml(stream));
         }
     }
 
     //<editor-fold defaultstate="collapsed" desc="Implementation details">
-    private static MediatorConnection fromXml(InputStream stream) throws IOException {
-        ArrayListMultimap<String, MediatorAlias> data = ArrayListMultimap.create();
-        for (MediatorAlias o : loadXml(stream)) {
-            data.put(o.getDataSourceName(), o);
-        }
-        return fromMultimap(data);
-    }
-
-    private static MediatorConnection fromMultimap(final ListMultimap<String, MediatorAlias> data) {
-        return new MediatorConnection() {
-            @Override
-            public List<String> getDataSourceNames() {
-                return new ArrayList<>(data.keySet());
-            }
-
-            @Override
-            public List<MediatorAlias> get(String dataSourceName) {
-                return data.get(dataSourceName);
-            }
-        };
-    }
-
     public static List<MediatorAlias> loadXml(InputStream stream) throws IOException {
         try {
             JAXBContext context = JAXBContext.newInstance(ItemsBean.class);

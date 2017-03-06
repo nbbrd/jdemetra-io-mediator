@@ -1,5 +1,5 @@
 /*
- * Copyright 2015 National Bank of Belgium
+ * Copyright 2017 National Bank of Belgium
  * 
  * Licensed under the EUPL, Version 1.1 or - as soon they will be approved 
  * by the European Commission - subsequent versions of the EUPL (the "Licence");
@@ -14,22 +14,36 @@
  * See the Licence for the specific language governing permissions and 
  * limitations under the Licence.
  */
-package be.nbb.demetra.mediator;
+package internal.test;
 
-import java.io.Closeable;
+import be.nbb.demetra.mediator.MediatorAlias;
+import be.nbb.demetra.mediator.MediatorConnection;
 import java.io.IOException;
 import java.util.List;
-import javax.annotation.Nonnull;
 
 /**
  *
  * @author Philippe Charles
  */
-public interface MediatorConnection extends Closeable {
+public final class FailingConnection implements MediatorConnection {
 
-    @Nonnull
-    List<String> getDataSourceNames() throws IOException;
+    public static final FailingConnection INSTANCE = new FailingConnection();
 
-    @Nonnull
-    List<MediatorAlias> get(@Nonnull String dataSourceName) throws IOException;
+    private FailingConnection() {
+    }
+
+    @Override
+    public List<String> getDataSourceNames() throws IOException {
+        throw new IOException();
+    }
+
+    @Override
+    public List<MediatorAlias> get(String dataSourceName) throws IOException {
+        throw new IOException();
+    }
+
+    @Override
+    public void close() throws IOException {
+        throw new IOException();
+    }
 }

@@ -16,7 +16,6 @@
  */
 package be.nbb.demetra.mediator;
 
-import ec.tstoolkit.design.VisibleForTesting;
 import java.io.IOException;
 import javax.annotation.Nonnull;
 
@@ -24,49 +23,8 @@ import javax.annotation.Nonnull;
  *
  * @author Philippe Charles
  */
-public abstract class MediatorConnectionSupplier {
+public interface MediatorConnectionSupplier {
 
     @Nonnull
-    abstract public MediatorConnection getConnection() throws IOException;
-
-    @Nonnull
-    public static MediatorConnectionSupplier noOp() {
-        return new NoOpSupplier();
-    }
-
-    @Nonnull
-    @VisibleForTesting
-    public static MediatorConnectionSupplier failing() {
-        return new FailingSupplier();
-    }
-
-    //<editor-fold defaultstate="collapsed" desc="Implementation details">
-    private static final class NoOpSupplier extends MediatorConnectionSupplier {
-
-        public static final NoOpSupplier INSTANCE = new NoOpSupplier();
-
-        private NoOpSupplier() {
-            // singleton
-        }
-
-        @Override
-        public MediatorConnection getConnection() throws IOException {
-            return MediatorConnection.noOp();
-        }
-    }
-
-    private static final class FailingSupplier extends MediatorConnectionSupplier {
-
-        public static final FailingSupplier INSTANCE = new FailingSupplier();
-
-        private FailingSupplier() {
-            // singleton
-        }
-
-        @Override
-        public MediatorConnection getConnection() throws IOException {
-            throw new IOException();
-        }
-    }
-    //</editor-fold>
+    MediatorConnection getConnection() throws IOException;
 }
