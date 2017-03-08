@@ -16,17 +16,14 @@
  */
 package be.nbb.demetra.mediator;
 
-import lombok.Value;
-
 /**
  *
  * @author Philippe Charles
  */
-@Value
+@lombok.Value
 public final class MediatorAlias {
 
-    private final String dataSourceName;
-    private final String dataSetName;
-    private final String uri;
-
+    String dataSourceName;
+    String dataSetName;
+    String uri;
 }

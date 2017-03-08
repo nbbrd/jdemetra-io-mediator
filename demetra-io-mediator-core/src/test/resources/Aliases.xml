@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<items>
+    <item dataSourceName="First" dataSetName="Test" uri="demetra://tsprovider/XCLPRVDR/20111201/SERIES?file=Insee.xlsx#seriesName=Textiles+001563047&amp;sheetName=FRANCE+Textile"/>
+    <item dataSourceName="First" dataSetName="Test-no-provider" uri="demetra://tsprovider/STUFF/20111201/SERIES?file=Insee.xlsx#seriesName=Textiles+001563047&amp;sheetName=FRANCE+Textile"/>
+    <item dataSourceName="First" dataSetName="Test-no-data" uri="demetra://tsprovider/XCLPRVDR/20111201/SERIES?file=Insee123.xlsx#seriesName=Textiles+001563047&amp;sheetName=FRANCE+Textile"/>
+    <item dataSourceName="First" dataSetName="Test-no-uri" uri="hello\\//world"/>
+    <item dataSourceName="Second" dataSetName="Hello" uri="demetra://tsprovider/XCLPRVDR/20111201/SERIES?file=Insee.xlsx#seriesName=Textiles+001563047&amp;sheetName=FRANCE+Textile"/>
+</items>

@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<items>
-    <item dataSourceName="Single" dataSetName="Test" uri="demetra://tsprovider/XCLPRVDR/20111201/SERIES?file=C%3A%5CLocalData%5CCHARPHI%5CDATA%5Cdata4dem%5CInsee.xlsx#seriesName=Textiles+001563047&amp;sheetName=FRANCE+Textile"/>
-    <item dataSourceName="Single" dataSetName="Test-no-provider" uri="demetra://tsprovider/STUFF/20111201/SERIES?file=C%3A%5CLocalData%5CCHARPHI%5CDATA%5Cdata4dem%5CInsee.xlsx#seriesName=Textiles+001563047&amp;sheetName=FRANCE+Textile"/>
-    <item dataSourceName="Single" dataSetName="Test-no-data" uri="demetra://tsprovider/XCLPRVDR/20111201/SERIES?file=C%3A%5CLocalData%5CCHARPHI%5CDATA%5Cdata4dem%5CInsee123.xlsx#seriesName=Textiles+001563047&amp;sheetName=FRANCE+Textile"/>
-    <item dataSourceName="Single" dataSetName="Test-no-uri" uri="hello\\//world"/>
-</items>
